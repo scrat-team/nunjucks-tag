@@ -66,9 +66,10 @@ describe('test/lib/parseAttributes.test.js', function() {
   it('should escape', function() {
     mm.equal('{% if ("<a"|first|safe == "<") %}a{% endif %}', 'a');
     mm.equal('{% test "<div" %}', '<test &lt;div>');
+    mm.equal('{% test "<div"|safe %}', '<test>');
+    mm.equal('{% test attr="<div"|safe %}', '<test attr="<div">');
     mm.equal('{% test attr=html href=href json=jsonStr %}', '<test attr="&lt;img src=&quot;http://placehold.it/350x150&quot; onload=&quot;alert(1);&quot;&gt;" href="http://scrat.io" json="{&quot;a&quot;:&quot;b&quot;}">');
-    // let tpl = '{% custom a=("<script"|safe) b="<" %}{{ content }}{% endcustom %}';
-    // mm.equal(tpl, '<custom a="<script" b="&lt;">this is content</custom>');
+    mm.equal('{% test attr="<div"|safe %}', '<test attr="<div">');
   });
 
   it('throw error', function() {
