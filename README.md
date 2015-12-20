@@ -1,7 +1,12 @@
-# nunjucks-tag - provide nunjucks base tag to make it easy to write custom tag
+# nunjucks-tag
 
-## Install
-```
+> provide [nunjucks](http://mozilla.github.io/nunjucks/) base tag to make it easy to write custom tag.
+
+[![NPM Version](https://img.shields.io/npm/v/nunjucks-tag.svg?style=flat)](https://www.npmjs.org/package/nunjucks-tag)
+[![Build Status](https://img.shields.io/travis/node-modules/nunjucks-tag.svg?style=flat)](https://travis-ci.org/node-modules/nunjucks-tag)
+
+## Installation
+```bash
   npm install nunjucks-tag --save
 ```
 
