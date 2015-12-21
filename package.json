@@ -1,6 +1,6 @@
 {
   "name": "nunjucks-tag",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "provide nunjucks base tag to make it easy to write custom tag",
   "dependencies": {
     "delegates": "^0.1.0"
