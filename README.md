@@ -51,9 +51,10 @@ assert(html, '<div attr="test"></div>');
 ## Attribute convert rules
   - all the attr name && value will be escape
   - single attrs
-    - only allow string, `"disabled" someVar => disabled someValue`
+    - only allow string, will escape && ignore string with space, `"disabled" someVar "some space" "<" => disabled someValue &lt;`
     - number/array/object/falsely will be ignore, `123, [12,13] {a:'b'} undefined false null => nothing`
   - key-value attrs
-    - string/number will output as string, `attr1=123 attr2="test"`
-    - object/array will output as String(item), `attr1={} attr2=["a", "b"] => attr1="[object Object] attr2="a,b"`
+    - string/number will output as escape string, `attr1=123 attr2="test" attr3="<div" => attr1="123" attr2="test" attr3="&lt;div"`
+    - SafeString will output as what they are, `attr2="<div"|safe => attr2="<div"`
+    - object/array will output as String(item), `attr1={} attr2=["a", "b"] => attr1="[object Object] attr2="[object Array]"`
     - undefined/null will ignore, `attr1=undefined attr2=null => empty string`

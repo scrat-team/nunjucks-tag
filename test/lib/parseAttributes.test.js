@@ -28,11 +28,11 @@ describe('test/lib/parseAttributes.test.js', function() {
     ['"data-attr"=clz', 'data-attr="test"'],
     ['"data-attr-1-a"=clz', 'data-attr-1-a="test"'],
     ['"checked"', 'checked'],
-    ['class=["test1", clz]', 'class="test1,test"'],
-    ['class=["test1"], style=clz', 'class="test1" style="test"'],
-    ['class=["test1"] style=clz "checked"', 'checked class="test1" style="test"'],
+    ['class=["test1", clz]', 'class="[object Array]"'],
+    ['class=["test1"], style=clz', 'class="[object Array]" style="test"'],
+    ['class=["test1"] style=clz "checked"', 'checked class="[object Array]" style="test"'],
     ['class={}', 'class="[object Object]"'],
-    ['class=[clz, "a"]', 'class="test,a"'],
+    ['class=[clz, "a"]', 'class="[object Array]"'],
     // 转义
     ['class="<script>alert(1)</script>"', 'class="&lt;script&gt;alert(1)&lt;/script&gt;"'],
     ['class="<"', 'class="&lt;"'],
@@ -58,7 +58,8 @@ describe('test/lib/parseAttributes.test.js', function() {
   it('should output key-value attrs', function() {
     mm.equal('{% test attr1=attr1 attr2="attr2" attr3=attr3 %}', '<test attr1="some_attr" attr2="attr2" attr3="3">');
     mm.equal('{% test attr1=bool attr2=undefinedVar attr3=nullVar %}', '<test attr1="true">');
-    mm.equal('{% test style=[attr1, "attr2"] %}', '<test style="some_attr,attr2">');
+    mm.equal('{% test style=[attr1, "attr2"] %}', '<test style="[object Array]">');
+    mm.equal('{% test style=[attr1, "attr2"] %}', '<test style="[object Array]">', {attr1: '"'});
     mm.equal('{% test style=[attr1, "attr2"]|join(" ") %}', '<test style="some_attr attr2">');
     mm.equal('{% test class={attr1: true, attr2: false, attr3: bool } %}', '<test class="[object Object]">');
   });
